@@ -43,25 +43,25 @@ Una vez que tenga acceso a Instana, abra el panel de Instana. Presione  `Add Web
 
 ![](images/instana_addweb.png)
 
-opie el script generado e insértelo en la`<head>` etiqueta de [/src/services/ui/frontend/public/index.html](src/services/ui/frontend/public/index.html). Esto integra Instana en la interfaz de usuario de la aplicación. Esto ahora le permitirá analizar las cargas de la página, el tráfico y más en la parte frontal de la aplicación.
+opie el script generado e insértelo en la`<head>` etiqueta de [/source/src/services/ui/frontend/public/index.html](source/src/services/ui/frontend/public/index.html). Esto integra Instana en la interfaz de usuario de la aplicación. Esto ahora le permitirá analizar las cargas de la página, el tráfico y más en la parte frontal de la aplicación.
 
 Instana ya está integrado en los servicios. Para aprender a integrar Instana con sus propios servicios, se proporciona documentación para integrar Instana en aplicaciones [Node.js](https://www.instana.com/docs/ecosystem/node-js/configuration/) y [Python](https://www.instana.com/docs/ecosystem/python/configuration/), así como [muchas otras tecnologías](https://www.instana.com/docs/ecosystem/). Tener Instana en los servicios de backend permite que los rastreos distribuidos, la telemetría y otra información sobre las llamadas realizadas a un servicio se envíen a Instana. Además, puede analizar las llamadas de rastreo individuales para mostrar cómo se comunican sus servicios entre sí. Puede ver cómo se integra Instana en cada servicio de Bee Travels aquí yendo a lo siguiente:
 
 **Servicio de destino**
-* Código fuente: [src/services/destination-v1/src/app.js](src/services/destination-v1/src/app.js) (lines 14-17)
-* Implementación yaml: [config/destination-v1-deploy.yaml](config/destination-v1-deploy.yaml) (lines 53-64)
+* Código fuente: [source/src/services/destination-v1/src/app.js](source/src/services/destination-v1/src/app.js) (lines 14-17)
+* Implementación yaml: [source/config/destination-v1-deploy.yaml](source/config/destination-v1-deploy.yaml) (lines 53-64)
 
 **Servicio de alquiler de coches**
-* Código fuente: [src/services/car-rental-v1/src/app.js](src/services/car-rental-v1/src/app.js) (lines 15-18)
-* Implementación yaml: [config/carrental-v1-deploy.yaml](config/carrental-v1-deploy.yaml) (lines 53-64)
+* Código fuente: [source/src/services/car-rental-v1/src/app.js](source/src/services/car-rental-v1/src/app.js) (lines 15-18)
+* Implementación yaml: [source/config/carrental-v1-deploy.yaml](source/config/carrental-v1-deploy.yaml) (lines 53-64)
 
 **Servicio de hotel**
-* Código fuente:  [src/services/hotel-v1-python/app/\__init__.py](src/services/hotel-v1-python/app/__init__.py) (lines 11-12, 28)
-* Implementación yaml: [config/hotel-v1-python-deploy.yaml](config/hotel-v1-python-deploy.yaml) (lines 53-64)
+* Código fuente:  [source/src/services/hotel-v1-python/app/\__init__.py](source/src/services/hotel-v1-python/app/__init__.py) (lines 11-12, 28)
+* Implementación yaml: [source/config/hotel-v1-python-deploy.yaml](source/config/hotel-v1-python-deploy.yaml) (lines 53-64)
 
 **Servicio de cambio de moneda**
-* Código fuente: [src/services/currency-exchange/src/app.js](src/services/currency-exchange/src/app.js) (lines 14-17)
-* Implementación yaml: [config/currencyexchange-deploy.yaml](config/currencyexchange-deploy.yaml) (lines 51-62)
+* Código fuente: [source/src/services/currency-exchange/src/app.js](source/src/services/currency-exchange/src/app.js) (lines 14-17)
+* Implementación yaml: [source/config/currencyexchange-deploy.yaml](source/config/currencyexchange-deploy.yaml) (lines 51-62)
 
 Ahora que Instana se ha incorporado al código, ahora estamos listos para obtener las credenciales para implementar un Agente Instana. Para hacer esto, desde el panel de Instana presione `Deploy Agent`
 
