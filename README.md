@@ -29,15 +29,15 @@ En este patrón de código, integraremos [Instana](https://www.instana.com/) con
 2. El código Instana en cada servicio de la aplicación Bee Travels envía datos sobre cada servicio respectivo al Agente Instana en el clúster de OpenShift (un Agente Instana por nodo del clúster).
 3. El Agente Instana envía esos datos a su cuenta en Instana, donde puede analizar / monitorear los microservicios de Bee Travels a través del panel de Instana.
 
-# Steps
+# Secuencia
 
 1. [Requisitos previos](#requisitos-previos)
-2. [Integrar Instana](#2-integrar-instana)
-3. [Deploy to OpenShift](#3-implementar-en-openshift)
-4. [Genere tráfico y analícelo con Instana](#4-genere-tráfico-y-analícelo-con-instana)
+2. [Integrar Instana](#1-integrar-instana)
+3. [Deploy to OpenShift](#2-implementar-en-openshift)
+4. [Genere tráfico y analícelo con Instana](#3-genere-tráfico-y-analícelo-con-instana)
 
-
-## 2. Integrar Instana
+# Pasos a seguir
+## 1. Integrar Instana
 
 Una vez que tenga acceso a Instana, abra el panel de Instana. Presione  `Add Website` e ingrese un nombre para su sitio web ej. `Bee Travels`
 
@@ -71,7 +71,7 @@ Next, select `OpenShift` as the platform and `Operator` as the technology and co
 
 ![](images/agent_creds.png)
 
-## 3. Implementar en OpenShift
+## 2. Implementar en OpenShift
 
 1. Aprovisione un [clúster de OpenShift](https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift).
 > NOTA: Este paso puede tardar unos 30 minutos.
@@ -122,7 +122,7 @@ Asegúrese de configurar `YAML view` y editar el YAML para que se vea como la si
 
 ![](images/openshift_instanaagentyaml.png)
 
-## 4. Genere tráfico y analícelo con Instana
+## 3. Genere tráfico y analícelo con Instana
 En este punto, debería comenzar a notar que su panel de Instana se llena con información de su clúster de OpenShift. Ahora es el momento de comenzar a generar algo de tráfico hacia la aplicación Bee Travels que se está ejecutando en su clúster de OpenShift. Para generar tráfico, usaremos un script que usa [Puppeteer](https://developers.google.com/web/tools/puppeteer/). Desde la ventana de su terminal, ejecute lo siguiente para generar tráfico:
 
 ```
