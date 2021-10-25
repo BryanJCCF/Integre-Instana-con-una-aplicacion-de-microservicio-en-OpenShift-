@@ -32,9 +32,9 @@ En este patrón de código, integraremos [Instana](https://www.instana.com/) con
 # Steps
 
 1. [Requisitos previos](#requisitos-previos)
-2. [Integrar Instana](#2-integrar-Instana)
-3. [Deploy to OpenShift](#3-implementar-en-OpenShift)
-4. [Generate Traffic and Analyze with Instana](#4-generate-traffic-and-analyze-with-instana)
+2. [Integrar Instana](#2-integrar-instana)
+3. [Deploy to OpenShift](#3-implementar-en-openshift)
+4. [Genere tráfico y analícelo con Instana](#4-genere-tráfico-y-analícelo-con-instana)
 
 
 ## 2. Integrar Instana
@@ -122,9 +122,8 @@ Asegúrese de configurar `YAML view` y editar el YAML para que se vea como la si
 
 ![](images/openshift_instanaagentyaml.png)
 
-## 5. Generate Traffic and Analyze with Instana
-
-At this point, you should start to notice your Instana dashboard populating with information from your OpenShift cluster. It is now time to start generating some traffic to the Bee Travels application that is running in your OpenShift cluster. To generate traffic, we will be using a script that uses [Puppeteer](https://developers.google.com/web/tools/puppeteer/). From your terminal window, run the following to generate traffic:
+## 4. Genere tráfico y analícelo con Instana
+En este punto, debería comenzar a notar que su panel de Instana se llena con información de su clúster de OpenShift. Ahora es el momento de comenzar a generar algo de tráfico hacia la aplicación Bee Travels que se está ejecutando en su clúster de OpenShift. Para generar tráfico, usaremos un script que usa [Puppeteer](https://developers.google.com/web/tools/puppeteer/). Desde la ventana de su terminal, ejecute lo siguiente para generar tráfico:
 
 ```
 cd traffic
@@ -132,30 +131,30 @@ npm install
 node traffic.js <NUM_CALLS> <ROUTE>
 ```
 
-`NUM_CALLS` - refers to how many calls will be made to the Bee Travels application. Each call will make 2 requests to the application. One will be for searching hotels for a random city and the other will be for searching car rentals for the same random city.
+`NUM_CALLS` -se refiere a cuántas llamadas se realizarán a la aplicación Bee Travels. Cada llamada hará 2 solicitudes a la aplicación. Uno será para buscar hoteles para una ciudad aleatoria y el otro será para buscar alquileres de automóviles para la misma ciudad aleatoria.
 
-`ROUTE` - refers to the created route's location/url from OpenShift. Make sure there is no trailing `/`
+`ROUTE` - se refiere a la ubicación / url de la ruta creada desde OpenShift. Asegúrate de que no haya seguimiento `/`
 
-Once the traffic script is finished running, go to your Instana dashboard and click on your Bee Travels website to view the traffic. If you are not seeing any traffic, update your viewing time range in the top right corner. Once you are able to view the traffic, you can press `Analyze Page Loads` to view the individual calls made to the front end UI.
+Una vez que la secuencia de comandos de tráfico haya terminado de ejecutarse, vaya a su panel de Instana y haga clic en su sitio web Bee Travels para ver el tráfico. Si no ve tráfico, actualice su intervalo de tiempo de visualización en la esquina superior derecha. Una vez que pueda ver el tráfico, puede presionar `Analyze Page Loads`para ver las llamadas individuales realizadas a la interfaz de usuario del front-end.
 
 ![](images/instana_websitedashboard.png)
 
-From here, you can scroll down to view all individual calls that were made to the front end UI. Select on one of the calls and click on the path to analyze the individual call.
+Desde aquí, puede desplazarse hacia abajo para ver todas las llamadas individuales que se realizaron a la interfaz de usuario de la interfaz. Seleccione una de las llamadas y haga clic en la ruta para analizar la llamada individual.
 
 ![](images/instana_pageloads.png)
 
-Once you are viewing the individual call, scroll down and view the XHR activity. You will notice that some of the requests have a `View Backend Trace` button. Clicking on the button will show a request trace for a backend Bee Travels service that is being called by an API call from the front end UI.
+Una vez que esté viendo la llamada individual, desplácese hacia abajo y vea la actividad XHR. Notarás que algunas de las solicitudes tienen un botón `View Backend Trace`. Al hacer clic en el botón, se mostrará un seguimiento de solicitud para un servicio Bee Travels de backend que está siendo llamado por una llamada API desde la interfaz de usuario del front-end.
 
 ![](images/instana_xhr.png)
 
-While viewing the trace, you can click on the service from the `Service Endpoint List` to analyze that backend service on Instana.
+Mientras ve el seguimiento, puede hacer clic en el servicio del `Service Endpoint List` para analizar ese servicio de backend en Instana.
 
 ![](images/instana_trace.png)
 
-This is as far as this code pattern goes with analyzing Bee Travels on Instana but feel free to check out more of what Instana offers in the Instana dashboard.
+Hasta aquí llega este patrón de código con el análisis de Bee Travels en Instana, pero siéntase libre de ver más de lo que ofrece Instana en el tablero de Instana.
 
-# License
+# Licencia
 
-This code pattern is licensed under the Apache License, Version 2. Separate third-party code objects invoked within this code pattern are licensed by their respective providers pursuant to their own separate licenses. Contributions are subject to the [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) and the [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
+Este Code Pattern tiene licencia de Apache License, Versión 2. Los objetos de código de terceros independientes invocados dentro de este patrón de código tienen licencia de sus respectivos proveedores de conformidad con sus propias licencias independientes. Las contribuciones están sujetas al  [Developer Certificate of Origin, Version 1.1](https://developercertificate.org/) y la [Apache License, Version 2](https://www.apache.org/licenses/LICENSE-2.0.txt).
 
 [Apache License FAQ](https://www.apache.org/foundation/license-faq.html#WhatDoesItMEAN)
