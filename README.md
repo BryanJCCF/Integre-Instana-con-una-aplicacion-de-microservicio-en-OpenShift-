@@ -2,30 +2,15 @@
 
 https://developer.ibm.com/patterns/integrating-instana-with-microservice-app-on-openshift/
 
-In this code pattern, we will integrate [Instana](https://www.instana.com/) with a polyglot microservice travel application on OpenShift. Instana is a fully automated Enterprise Observability solution, with infrastructure monitoring and Application Performance Management (APM), designed specifically for the challenges of managing microservice and cloud-native applications. We will generate traffic to the application using [Puppeteer](https://developers.google.com/web/tools/puppeteer/) and analyze the traffic on the Instana dashboard. The travel application used in this code pattern is a part of the [Bee Travels](https://bee-travels.github.io/) project that focuses on some of the first version services of the application. The services included in this code pattern are:
+# Introducción
+En este patrón de código, integraremos [Instana](https://www.instana.com/) con una aplicación de viajes de microservicio políglota en OpenShift. Instana es una solución de Observabilidad Empresarial totalmente automatizada, con supervisión de la infraestructura y Gestión del Rendimiento de las Aplicaciones (APM), diseñada específicamente para los desafíos de la gestión de aplicaciones nativas de la nube y de microservicios. Generaremos tráfico a la aplicación usando [Puppeteer](https://developers.google.com/web/tools/puppeteer/) ahí analizaremos el tráfico en el panel de Instana. La aplicación de viaje utilizada en este patrón de código es parte del proyecto [Bee Travels](https://bee-travels.github.io/) que se centra en algunos de los servicios de la primera versión de la aplicación. Los servicios incluidos en este Code Pattern  son:
 * Destination v1 (Node.js)
 * Car Rental v1 (Node.js)
 * Hotel v1 (Python)
 * Currency Exchange (Node.js)
 * UI (Node.js/React)
 
-# Architecture
-
-![](images/architecture.png)
-
-1. The Puppeteer script generates traffic to the Bee Travels application running in the OpenShift cluster.
-2. The Instana code in each service of the Bee Travels application sends data about each respective service to the Instana Agent in the OpenShift cluster (one Instana Agent per cluster node).
-3. The Instana Agent sends that data to your account on Instana where you can analyze/monitor the Bee Travels microservices through the Instana dashboard.
-
-# Steps
-
-1. [Prerequisites](#1-prerequisites)
-2. [Fork the repo](#2-fork-the-repo)
-3. [Integrate Instana](#3-integrate-instana)
-4. [Deploy to OpenShift](#4-deploy-to-openshift)
-5. [Generate Traffic and Analyze with Instana](#5-generate-traffic-and-analyze-with-instana)
-
-## 1. Prerequisites
+## Requisitos previos
 
 * [IBM Cloud account](https://cloud.ibm.com/registration)
 * [OpenShift CLI (oc)](https://cloud.ibm.com/docs/openshift?topic=openshift-openshift-cli#cli_oc)
@@ -34,41 +19,51 @@ In this code pattern, we will integrate [Instana](https://www.instana.com/) with
 * [NPM](https://www.npmjs.com/get-npm)
 * [Yarn](https://classic.yarnpkg.com/en/docs/install)
 * [Pupeteer](https://developers.google.com/web/tools/puppeteer/get-started)
-* [Access to Instana](https://www.instana.com/trial/)
+* [Acceso a Instana](https://www.instana.com/trial/)
 
-## 2. Fork the repo
+# Flujo
 
-1. Scroll to the top of this repo and press the **Fork** button.
+![](images/architecture.png)
 
-2. Select the account from the list that you would like to fork the repo to.
+1. El script Puppeteer genera tráfico a la aplicación Bee Travels que se ejecuta en el clúster de OpenShift.
+2. El código Instana en cada servicio de la aplicación Bee Travels envía datos sobre cada servicio respectivo al Agente Instana en el clúster de OpenShift (un Agente Instana por nodo del clúster).
+3. El Agente Instana envía esos datos a su cuenta en Instana, donde puede analizar / monitorear los microservicios de Bee Travels a través del panel de Instana.
 
-## 3. Integrate Instana
+# Steps
 
-Once you have access to Instana, open up the Instana dashboard. Press `Add Website` and enter a name for your website ex. `Bee Travels`
+1. [Requisitos previos](#requisitos-previos)
+2. [Integrar Instana](#2-integrar-Instana)
+3. [Deploy to OpenShift](#3-implementar-en-OpenShift)
+4. [Generate Traffic and Analyze with Instana](#4-generate-traffic-and-analyze-with-instana)
+
+
+## 2. Integrar Instana
+
+Una vez que tenga acceso a Instana, abra el panel de Instana. Presione  `Add Website` e ingrese un nombre para su sitio web ej. `Bee Travels`
 
 ![](images/instana_addweb.png)
 
-Copy the generated script and insert it into the `<head>` tag of [/src/services/ui/frontend/public/index.html](src/services/ui/frontend/public/index.html). This integrates Instana into the UI front end of the application. This will now allow you to analzye page loads, traffic, and more to the front end of the application.
+opie el script generado e insértelo en la`<head>` etiqueta de [/src/services/ui/frontend/public/index.html](src/services/ui/frontend/public/index.html). Esto integra Instana en la interfaz de usuario de la aplicación. Esto ahora le permitirá analizar las cargas de la página, el tráfico y más en la parte frontal de la aplicación.
 
-Instana is already integrated into the services. To learn how to integrate Instana with your own services, documentation is provided for integrating Instana into [Node.js](https://www.instana.com/docs/ecosystem/node-js/configuration/) and [Python](https://www.instana.com/docs/ecosystem/python/configuration/) applications, as well as [many other technologies](https://www.instana.com/docs/ecosystem/). Having Instana in backend services allows for distributed traces, telemetry and other information about calls made to a service to be sent to Instana. In addition, you can analyze individual trace calls to show how your services are communicating with one another. You can view how Instana is integrated in each Bee Travels service here by going to the following:
+Instana ya está integrado en los servicios. Para aprender a integrar Instana con sus propios servicios, se proporciona documentación para integrar Instana en aplicaciones [Node.js](https://www.instana.com/docs/ecosystem/node-js/configuration/) y [Python](https://www.instana.com/docs/ecosystem/python/configuration/), así como [muchas otras tecnologías](https://www.instana.com/docs/ecosystem/). Tener Instana en los servicios de backend permite que los rastreos distribuidos, la telemetría y otra información sobre las llamadas realizadas a un servicio se envíen a Instana. Además, puede analizar las llamadas de rastreo individuales para mostrar cómo se comunican sus servicios entre sí. Puede ver cómo se integra Instana en cada servicio de Bee Travels aquí yendo a lo siguiente:
 
-**Destination Service**
-* Source code: [src/services/destination-v1/src/app.js](src/services/destination-v1/src/app.js) (lines 14-17)
-* Deployment yaml: [config/destination-v1-deploy.yaml](config/destination-v1-deploy.yaml) (lines 53-64)
+**Servicio de destino**
+* Código fuente: [src/services/destination-v1/src/app.js](src/services/destination-v1/src/app.js) (lines 14-17)
+* Implementación yaml: [config/destination-v1-deploy.yaml](config/destination-v1-deploy.yaml) (lines 53-64)
 
-**Car Rental Service**
-* Source code: [src/services/car-rental-v1/src/app.js](src/services/car-rental-v1/src/app.js) (lines 15-18)
-* Deployment yaml: [config/carrental-v1-deploy.yaml](config/carrental-v1-deploy.yaml) (lines 53-64)
+**Servicio de alquiler de coches**
+* Código fuente: [src/services/car-rental-v1/src/app.js](src/services/car-rental-v1/src/app.js) (lines 15-18)
+* Implementación yaml: [config/carrental-v1-deploy.yaml](config/carrental-v1-deploy.yaml) (lines 53-64)
 
-**Hotel Service**
-* Source code: [src/services/hotel-v1-python/app/\__init__.py](src/services/hotel-v1-python/app/__init__.py) (lines 11-12, 28)
-* Deployment yaml: [config/hotel-v1-python-deploy.yaml](config/hotel-v1-python-deploy.yaml) (lines 53-64)
+**Servicio de hotel**
+* Código fuente:  [src/services/hotel-v1-python/app/\__init__.py](src/services/hotel-v1-python/app/__init__.py) (lines 11-12, 28)
+* Implementación yaml: [config/hotel-v1-python-deploy.yaml](config/hotel-v1-python-deploy.yaml) (lines 53-64)
 
-**Currency Exchange Service**
-* Source code: [src/services/currency-exchange/src/app.js](src/services/currency-exchange/src/app.js) (lines 14-17)
-* Deployment yaml: [config/currencyexchange-deploy.yaml](config/currencyexchange-deploy.yaml) (lines 51-62)
+**Servicio de cambio de moneda**
+* Código fuente: [src/services/currency-exchange/src/app.js](src/services/currency-exchange/src/app.js) (lines 14-17)
+* Implementación yaml: [config/currencyexchange-deploy.yaml](config/currencyexchange-deploy.yaml) (lines 51-62)
 
-Now that Instana has been incorporated into the code, we are now ready to get the credentials for deploying an Instana Agent. To do this, from the Instana dashboard press `Deploy Agent`
+Ahora que Instana se ha incorporado al código, ahora estamos listos para obtener las credenciales para implementar un Agente Instana. Para hacer esto, desde el panel de Instana presione `Deploy Agent`
 
 ![](images/instana_deployagent.png)
 
@@ -76,53 +71,54 @@ Next, select `OpenShift` as the platform and `Operator` as the technology and co
 
 ![](images/agent_creds.png)
 
-## 4. Deploy to OpenShift
+## 3. Implementar en OpenShift
 
-1. Provision an [OpenShift Cluster](https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift).
-> NOTE: This step can take about 30 minutes
+1. Aprovisione un [clúster de OpenShift](https://cloud.ibm.com/kubernetes/catalog/create?platformType=openshift).
+> NOTA: Este paso puede tardar unos 30 minutos.
 
-2. Open the OpenShift console and copy/paste your login command (`oc login...`) to a terminal window.
+2. Abra la consola de OpenShift y copie / pegue su comando de inicio de sesión ( `oc login...`) en una ventana de terminal.
 
 ![](images/openshift_login.png)
 
-3. From the terminal window, run the `build-and-deploy.sh` script to build the Bee Travels application and deploy it to your OpenShift cluster.
-> NOTE: This step can take a few minutes
+3. Desde la ventana de la terminal, ejecute el `build-and-deploy.sh` script para crear la aplicación Bee Travels e implementarla en su clúster de OpenShift.
+> NOTA: Este paso puede tardar unos minutos.
 
 ```
 cd instana-openshift
 ./build-and-deploy.sh -d <DOCKERHUB_USERNAME>
 ```
 
-Once the script completes, you can verify the application services are running on your OpenShift cluster by going to `Workloads` -> `Pods` in your OpenShift console. Also, verify you are in the newly created `bee-travels` project. It should look like the following:
+Una vez que se completa el script, puede verificar que los servicios de la aplicación se estén ejecutando en su clúster de OpenShift yendo a `Workloads` -> `Pods` en su consola de OpenShift. Además, verifique que está en el proyecto `bee-travels`recién creado . Debería tener el siguiente aspecto:
 
 ![](images/openshift_pods.png)
 
-4. Now that the application services are deployed to your OpenShift cluster, it is time to expose the UI using a route. From the OpenShift console, go to `Networking` -> `Routes` and press the `Create Route` button.
+4. Ahora que los servicios de la aplicación están implementados en su clúster de OpenShift, es hora de exponer la interfaz de usuario mediante una ruta. Desde la consola de OpenShift, vaya a `Networking` -> `Routes` y presione el botón `Create Route`.
 
 ![](images/openshift_route.png)
 
-Next, fill out the route fields exactly like the following screenshot and then create the route.
+A continuación, complete los campos de la ruta exactamente como en la siguiente captura de pantalla y luego cree la ruta.
+
 
 ![](images/openshift_routespecs.png)
 
-Keep note of the newly created route's location/url as this will be needed for later.
+Tome nota de la ubicación / URL de la ruta recién creada, ya que será necesaria para más adelante.
 
-5. The final step with the OpenShift cluster is to install the Instana Agent Operator from OperatorHub. First, you need to create a project for the Instana Agent and configure it's permissions. From your terminal window run the following commands:
+5. El último paso con el clúster de OpenShift es instalar Instana Agent Operator desde OperatorHub. Primero, debe crear un proyecto para Instana Agent y configurar sus permisos. Desde la ventana de su terminal, ejecute los siguientes comandos:
 
 ```
 oc new-project instana-agent
 oc adm policy add-scc-to-user privileged -z instana-agent
 ```
 
-Next, go to `Operators` -> `OperatorHub` in your OpenShift cluster and search for the Instana Agent Operator. Verfiy that you are in the newly created `instana-agent` project. Install the operator.
+A continuación, vaya a `Operators` -> `OperatorHub` en su clúster de OpenShift y busque Instana Agent Operator. Verifica que estás en el proyecto recién creado  `instana-agent`. Instale el operador.
 
 ![](images/openshift_operatorhub.png)
 
-Once the operator is installed, create an instance of an Instana Agent.
+Una vez que el operador esté instalado, cree una instancia de un Agente Instana.
 
 ![](images/openshift_instanaagent.png)
 
-Make sure to configure via `YAML view` and edit the YAML to look like the following screenshot. This is where we will incorporate the Instana credentials that were copied from the previous step. `<APP KEY>` refers to the `Instana Application Key`, `<ENDPOINT>` refers to the `Instana Service Endpoint`, and `<PORT>` refers to the `Instana Service port`. Once the YAML file is properly configured, create the instance of the Instana Agent.
+Asegúrese de configurar `YAML view` y editar el YAML para que se vea como la siguiente captura de pantalla. Aquí es donde incorporaremos las credenciales de Instana que se copiaron del paso anterior. `<APP KEY>` se refiere a `Instana Application Key`, `<ENDPOINT>` se refiere a `Instana Service Endpoint`, y `<PORT>` se refiere a `Instana Service port`. Una vez que el archivo YAML esté configurado correctamente, cree la instancia de Instana Agent.
 
 ![](images/openshift_instanaagentyaml.png)
 
