@@ -49,19 +49,19 @@ Instana ya está integrado en los servicios. Para aprender a integrar Instana co
 
 **Servicio de destino**
 * Código fuente: [source/src/services/destination-v1/src/app.js](source/src/services/destination-v1/src/app.js) (lines 14-17)
-* Implementación yaml: [source/config/destination-v1-deploy.yaml](source/config/destination-v1-deploy.yaml) (lines 53-64)
+* Yaml de despliegue: [source/config/destination-v1-deploy.yaml](source/config/destination-v1-deploy.yaml) (lines 53-64)
 
 **Servicio de alquiler de coches**
 * Código fuente: [source/src/services/car-rental-v1/src/app.js](source/src/services/car-rental-v1/src/app.js) (lines 15-18)
-* Implementación yaml: [source/config/carrental-v1-deploy.yaml](source/config/carrental-v1-deploy.yaml) (lines 53-64)
+* Yaml de despliegue: [source/config/carrental-v1-deploy.yaml](source/config/carrental-v1-deploy.yaml) (lines 53-64)
 
 **Servicio de hotel**
 * Código fuente:  [source/src/services/hotel-v1-python/app/\__init__.py](source/src/services/hotel-v1-python/app/__init__.py) (lines 11-12, 28)
-* Implementación yaml: [source/config/hotel-v1-python-deploy.yaml](source/config/hotel-v1-python-deploy.yaml) (lines 53-64)
+* Yaml de despliegue: [source/config/hotel-v1-python-deploy.yaml](source/config/hotel-v1-python-deploy.yaml) (lines 53-64)
 
 **Servicio de cambio de moneda**
 * Código fuente: [source/src/services/currency-exchange/src/app.js](source/src/services/currency-exchange/src/app.js) (lines 14-17)
-* Implementación yaml: [source/config/currencyexchange-deploy.yaml](source/config/currencyexchange-deploy.yaml) (lines 51-62)
+* Yaml de despliegue: [source/config/currencyexchange-deploy.yaml](source/config/currencyexchange-deploy.yaml) (lines 51-62)
 
 Ahora que Instana se ha incorporado al código, ahora estamos listos para obtener las credenciales para implementar un Agente Instana. Para hacer esto, desde el panel de Instana presionen `Deploy Agent`
 
